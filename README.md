@@ -1,119 +1,133 @@
-# Deploy Keras Model with Flask as Web App in 10 Minutes
+# Bangkit Team C23-PR536, EcoSorter
 
-[![](https://img.shields.io/badge/python-3.9%2B-green.svg)]()
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)
+Product-based Capstone Bangkit Academy 2023
+--
+# Members:
+1. Machine Learning:
+- Aloysius Darin Ario (M151DSX1837) – Universitas Brawijaya
+- M.Farhan Zachary (M312DKX4604) – Indonesia Defense University
+- Wintang Dayinta Wiyanto (M013DSY2108) – Institut Pertanian Bogor
 
-A minimal and customizable repo to deploy your image models as web app easily.
+2. Cloud Computing:
+- Andhika Rifki Alfariz (C181DSX1965) – Universitas Indonesia
+- Muhammad Haddad (C181DSX0964) – Universitas Indonesia
 
-## Getting Started
+3. Mobile Development:
+- Bimabara Sukma Muryanto (A181DSX1228) – Universitas  Indonesia
 
-- Quick run with Docker:
-  ```bash
-  docker run --rm -p 5000:5000 ghcr.io/imfing/keras-flask-deploy-webapp:latest
-  ```
-- Go to http://localhost:5000 and enjoy :tada:
+Final Selected Themes:
+--
+Sustainable Living
 
-Screenshot:
+Title of the Project: 
+--
+EcoSorter
 
-<p align="center">
-  <img src="./docs/screenshot.avif" height="420px" alt="">
-</p>
+Summary of Project: 
+--
+Our project aims to tackle the growing Indonesia problem of waste management and disposal by developing a mobile application that classifies waste items and educates users on proper waste management practices. The application leverages image processing and machine learning algorithms to identify and categorize waste materials, followed by providing relevant articles and guidelines to help users dispose of the waste responsibly. By addressing the lack of knowledge and awareness surrounding waste management, we aim to encourage responsible waste disposal behavior, contributing to a cleaner environment.
 
-## New Features :fire:
+Step to Replicate : 
+--
 
-- Enhanced, mobile-friendly UI
-- Support image drag-and-drop
-- Use vanilla JavaScript, HTML and CSS. No jQuery or Bootstrap
-- Switch to TensorFlow 2.x and [tf.keras](https://www.tensorflow.org/guide/keras) by default
-- Upgrade Docker base image to Python 3.11
+1. Machine Learning:
+- Dataset (from Kaggle)
+- Feature exploration
+- Preprocessing (scaling, normalization, data augmentation)
+- Define deep learning model using TensorFlow 
+- Hyperparameter tuning 
+- Save and load model to evaluate model performance
 
-<p float="left">
-  <img src="https://user-images.githubusercontent.com/5097752/71065048-61c1c800-213e-11ea-92f1-274cbe4734ba.png" height="330px" alt="">
-  <img src="https://user-images.githubusercontent.com/5097752/71062921-aeef6b00-2139-11ea-8b23-6b9eb1e326ca.png" height="330px" alt="">
-</p>
+2. Mobile Development:
+- Design UI layout (optional: Figma)
+- Dependencies (see Technology used part)
+- Navigation
+- Connecting local database to UI (using ViewModel, Room, optional: Flow, Koin, Clean Architecture)
+- Implement external feature (accessing camera)
+- Connecting to remote (using Firestore for database and Firebase storage for file)
+- Implement machine learning using TFLite
 
-------------------
+3. Cloud Computing:
+- Create a project on Google Cloud Platform
+- Set default region as asia-southeast2(Jakarta)
+> go to gcp console and write this command : $gcloud config set compute/region asia-southeast2
+- Create a project on Firebase
+- Create storage with records and profile folders
+- Cloud Storage Browser page
+  - Create bucket
+  - Name your bucket : "-----"
+  - Location type : region
+  - Choose where to store your data = asia-southeast2
+  - Leave the default setting
+  - create
+- Create a firestore for the database 
 
-## Run with Docker
+Technology Used : 
+--
+- [Firebase](https://firebase.google.com)
+- [TensorFlow](https://www.tensorflow.org/lite/guide/android)
+- [Keras]([https://keras.io/])
+- [Google Cloud Platform](https://cloud.google.com/gcp)
 
-#### Use prebuilt image
+Project Resources : 
+--
+### Budget
+Google Cloud Platform Subscription : **$200**
 
-```
-$ docker run --rm -p 5000:5000 ghcr.io/imfing/keras-flask-deploy-webapp:latest
-```
+### Dataset:
+- [Non and Biodegradable Material Dataset](https://www.kaggle.com/datasets/rayhanzamzamy/non-and-biodegradable-waste-dataset)
 
-#### Build locally
+### Paper / Journals / articles:
+- [Identifikasi Penyakit pada Daun Kopi Menggunakan Metode Deep Learning VGG16](https://jurnal.yudharta.ac.id/v2/index.php/EXPLORE-IT/article/view/2689)
 
-With **[Docker](https://www.docker.com)**, you can quickly build and run the entire application in minutes :whale:
+### Design Apps :
+[Design](https://www.figma.com/file/j81lA9sBapgNRp8tfqKYZG/Kerani-(Kerabat-Tani)?node-id=0%3A1)
 
-```shell
-# 1. First, clone the repo
-$ git clone https://github.com/imfing/keras-flask-deploy-webapp.git
-$ cd keras-flask-deploy-webapp
-
-# 2. Build Docker image
-$ docker build -t keras_flask_app .
-
-# 3. Run!
-$ docker run -it --rm -p 5000:5000 keras_flask_app
-```
-
-Open http://localhost:5000 and wait till the webpage is loaded.
-
-## Local Installation
-
-It's easy to install and run it on your computer.
-
-```shell
-# 1. First, clone the repo
-$ git clone https://github.com/imfing/keras-flask-deploy-webapp.git
-$ cd keras-flask-deploy-webapp
-
-# 2. Install Python packages
-$ pip install -r requirements.txt
-
-# 3. Run!
-$ python app.py
-```
-
-Open http://localhost:5000 and have fun. :smiley:
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/5097752/71064959-3c34be80-213e-11ea-8e13-91800ca2d345.gif" height="480px" alt="">
-</p>
-
-------------------
-
-## Customization
-
-It's also easy to customize and include your models in this app.
-
-> **Note**
-> Also consider [gradio](https://github.com/gradio-app/gradio) or [streamlit](https://github.com/streamlit/streamlit) to create complicated web apps for ML models.
-
-<details>
- <summary>Details</summary>
-
-### Use your own model
-
-Place your trained `.h5` file saved by `model.save()` under models directory.
-
-Check the [commented code](https://github.com/mtobeiyf/keras-flask-deploy-webapp/blob/master/app.py#L37) in app.py.
-
-### Use other pre-trained model
-
-See [Keras applications](https://keras.io/applications/) for more available models such as DenseNet, MobilNet, NASNet, etc.
-
-Check [this section](https://github.com/mtobeiyf/keras-flask-deploy-webapp/blob/master/app.py#L26) in app.py.
-
-### UI Modification
-
-Modify files in `templates` and `static` directory.
-
-`index.html` for the UI and `main.js` for all the behaviors.
-
-</details>
-
-## More Resources
-
-[Building a simple Keras + deep learning REST API](https://blog.keras.io/building-a-simple-keras-deep-learning-rest-api.html)
+### Deployment of The Server and ML Model to Google Cloud Platform
+#### 1. Create Firewall Rule. Navigation Menu >VPC Network >Firewall
+Firewall rules control incoming or outgoing traffic to an instance. Here are the steps to create firewall rule for this project.
+Click create firewall rule. Specified target tags and fill the source IPv4 ranges with 0.0.0.0/0. Specified TCP port to 8080. Then create.
+#### 2. Create VM instance in Compute Engine. VM instance is where we deploy our server
+Click create VM instance. Choose to allow http. Enter the network tags that we created in the firewall rule. Then create.
+#### 3. Run command in SSH.
+##### Update
+  - sudo apt update
+##### Install git
+  - sudo apt install git
+##### Clone our repository
+  - git clone https://github.com/Rian214/c22-ps164-kerani.git
+##### Install wget downloading files from web or FTP servers
+  - sudo apt install wget
+##### Install minoconda to get python environment.
+  - wget https://repo.anaconda.com/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh
+  - bash Miniconda3-4.7.10-Linux-x86_64.sh
+##### Point to your path, confirm the instalation, create, and activate the environment.
+  - export PATH=/home/<your folder name>/miniconda3/bin:$PATH
+  - which conda
+  - conda create -n c22-ps164-kerani python=3.7
+  - conda activate c22-ps164-kerani
+  - conda init
+##### Get into the directory
+  - cd c22-ps164-kerani
+  - cd backend
+##### Install all the libraries
+  - python3 -m pip install firebase_admin
+  - python3 -m pip install pyrebase4
+  - python3 -m pip install flask
+  - python3 -m pip install tensorflow
+  - python3 -m pip install numphy
+  - python3 -m pip install image
+  - python3 -m pip install keras
+  - python3 -m pip install Keras-Preprocessing
+  - python3 -m pip install matplotlib
+  - python3 -m pip install numpy
+  - python3 -m pip installpandas
+  - python3 -m pip installPillow
+  - python3 -m pip install requests
+  - python3 -m pip install scipy==1.8.1
+  - python3 -m pip install h5py
+##### Make directory for ML Model and upload ML Model
+  - mkdir Asset
+##### Run the server
+  - python3 app.py
+  
