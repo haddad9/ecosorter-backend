@@ -1,0 +1,37 @@
+name: Build, Publish, and Deploy to Cloud Run 
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v0.7.0
+        with:
+          credentials: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Download model.h5
+        run: |
+          gsutil cp gs://${{ secrets.GCP_BUCKET }}/${{ secrets.MODEL_H5_FILENAME}} ./models/
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        
+      - name: Build and push Docker image
+        run: |
+          docker buildx build --platform linux/amd64 -t gcr.io/${{ secrets.GCR_PROJECT_ID }}/${{ secrets.GCR_PROJECT_NAME }} --push .
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy keras-ecosorter \
+            --image gcr.io/${{ secrets.GCR_PROJECT_ID }}/${{ secrets.GCR_PROJECT_NAME }}  \
+            --platform managed \
+            --region ${{ secrets.GCR_REGION }} 

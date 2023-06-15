@@ -102,7 +102,7 @@ function previewFile(file) {
 //========================================================================
 
 function predictImage(image) {
-  fetch("/predict", {
+  fetch("/predict-img", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
