@@ -26,8 +26,9 @@ jobs:
 
       - name: Download model.h5
         run: |
+          pwd
           gsutil cp gs://${{ secrets.GCP_BUCKET }}/${{ secrets.MODEL_H5_FILENAME}} ./models/
-          
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
         
